@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ilRicettario</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+        <!--Font di Google-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playwrite+CU&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand titleFont" href="ilRicettario.html">ilRicettario</a>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="btn btn-outline-primary" id="accountButton" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!--Header-->
+        <div class="container py-4 py-xl-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <h2 class="titleFont fs-1">ilRicettario</h2>
+                <p class="w-lg-50 fs-4 textFont">The best website for culinary recipes.</p>
+            </div>
+        </div>
+
+        <!--Search-->
+        <div class="container-fluid sticky-searcher">            
+            <form class="d-flex" method="GET" action="recipe.html">
+                <input class="form-control me-2" type="search" placeholder="Search recipe" name="recipeName" id="searchInput">
+                <select class="form-select d-none" id="selectSearch" disabled>   
+                    <option value="-1" selected>Choose an option</option>                    
+                </select>
+                <button class="btn btn-light" type="submit">🔍︎</button>                                
+            </form>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="advancedSearchCheck" onclick="displayAdvacedSearch()">
+                <label class="form-check-label" for="advancedSearchCheck">Advanced Search</label>
+            </div>         
+        </div>
+        <div class="container py-4 py-xl-5border rounded-2 bg-light mt-1 mb-4 d-none" id="advacedSearchContainer">
+            <p class="mb-1">Search by:</p>
+            <div class="text-center">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" id="categoriesRadio" name="advacedSearchRadios" type="radio" value="categories" onclick="editSearchBar(value)">
+                    <label class="form-check-label" for="categoriesRadio">Categories</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" id="areaRadio" name="advacedSearchRadios" type="radio" value="area" onclick="editSearchBar(value)">
+                    <label class="form-check-label" for="areaRadio">Area</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" id="ingredientRadio" name="advacedSearchRadios" type="radio" value="ingredients" onclick="editSearchBar(value)">
+                    <label class="form-check-label" for="ingredientRadio" >Main ingredients</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" id="firstCharRadio" name="advacedSearchRadios" type="radio" value="firstLetter" onclick="editSearchBar(value)">
+                    <label class="form-check-label" for="firstCharRadio" >First letter</label>
+                </div>
+            </div>            
+        </div>     
+
+        <!-- Ricette Random-->
+        <div class="container py-4 py-xl-5">
+            <div class="row gy-4 gx-3 row-cols-1 row-cols-md-2 mt-3"  id="containerRandomRecipes"></div>
+        </div>
+        
+        <div id="generateRecipeButton" class="d-flex justify-content-center d-flex pb-4 pb-xl-5">
+            <a onclick="generateMoreRecipeCards()" href="#" class="btn btn-warning btn-lg">Find more random recipes</a> 
+        </div>
+        
+        <!--Loading
+        <div id="loadingLayer" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; z-index: 1000; display:flex">
+            <div class="spinner-border position-absolute" style="width: 5rem; height: 5rem;"></div>
+        </div>-->
+
+        <script>
+            window.onload = function() {document.body.scrollTop = document.documentElement.scrollTop = 0;};
+            document.addEventListener('DOMContentLoaded', function() {
+                generateRecipeCards();                
+                createEssentialLocalStorage();
+                checkLoggedUser();                
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        </body>
+</html>
